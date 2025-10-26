@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\ChirpController;
@@ -22,6 +23,17 @@ Route::view( '/register', 'auth.register' )
     ->middleware( 'guest' )
     ->name( 'register' );
 
+// Registration route
 Route::post( '/register', Register::class );
+
+// Logout route
 Route::post( '/logout', Logout::class )
-    ->middleware( 'auth' );
+    ->middleware( 'auth' )
+    ->name( 'logout' );
+
+// Login routes
+Route::view( '/login', 'auth.login' )
+    ->middleware( 'guest' )
+    ->name( 'login' );
+Route::post( '/login', Login::class )
+    ->middleware( 'guest' );
